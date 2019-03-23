@@ -39,7 +39,7 @@ _loadFilms() {
   _displayLoading() {
     if (this.state.isLoading) {
       return (
-        <View style={styles.loading_containfer}>
+        <View style={styles.loading_container}>
           <ActivityIndicator size='large' />
           {/* Le component ActivityIndicator possède une propriété size pour définir la taille du visuel de chargement : small ou large. Par défaut size vaut small, on met donc large pour que le chargement soit bien visible */}
         </View>
