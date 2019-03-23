@@ -1,6 +1,8 @@
 import React from 'react'
-import { StyleSheet, View, Text, ActivityIndicator, ScrollView } from 'react-native'
-import { getFilmDetailFromApi } from '../API/TMDBApi'
+import { StyleSheet, View, Text, ActivityIndicator, ScrollView, Image } from 'react-native'
+import { getFilmDetailFromApi, getImageFromApi, getBackdropFromApi } from '../API/TMDBApi'
+import moment from 'moment'
+import numeral from 'numeral'
 
 class FilmDetail extends React.Component {
   
@@ -27,7 +29,25 @@ class FilmDetail extends React.Component {
     if (film != undefined) {
       return (
         <ScrollView style={styles.scrollview_container}>
+          <Image
+          style={styles.backdrop}
+          source={{uri: getBackdropFromApi(film.backdrop_path)}}
+          />
+          <Image
+          style={styles.image}
+          source={{uri: getBackdropFromApi(film.poster_path)}}
+          />
           <Text>{film.title}</Text>
+          <Text>ID TMDB: {film.id}</Text>
+          <Text>Synopsis: {film.overview}</Text>
+          <Text>Note moyenne: {film.vote_average}</Text>
+          <Text>Nombre de votes: {film.vote_count}</Text>
+          <Text>Statut: {film.status}</Text>
+          <Text>Durée: {film.runtime}</Text>
+          <Text>Date de sortie: {film.release_date}</Text>
+          <Text>Popularité: {film.popularity}</Text>
+          <Text>Budget: {film.budget}</Text>
+          <Text>Bénéfices: {film.revenue}</Text>
         </ScrollView>
       )
     }
@@ -69,7 +89,18 @@ const styles = StyleSheet.create({
   },
   scrollview_container: {
     flex: 1
-  }
+  },
+  backdrop: {
+    width: "100%",
+    height: 300,
+    margin: 0,
+    justifyContent: 'center'
+  },
+  image: {
+    width: 120,
+    height: 180,
+    margin: 5,
+  },
 })
 
 export default FilmDetail
